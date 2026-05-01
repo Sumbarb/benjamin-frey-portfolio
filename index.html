@@ -1,1 +1,1375 @@
-<img src="images/headshot.jpg" alt="Benjamin Frey" class="about-photo">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benjamin Frey - Engineering Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;l
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00d9ff;
+            --secondary: #ff006e;
+            --accent: #fb5607;
+            --dark: #0a0e27;
+            --darker: #050812;
+            --text: #ffffff;
+            --text-light: #b0b5c3;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION */
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .logo .accent {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after,
+        .nav-links a.active:after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 70px;
+            overflow: hidden;
+        }
+
+        #particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero-tagline {
+            font-size: 14px;
+            color: var(--primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 600;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out 0.1s both;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .btn {
+            padding: 14px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--text);
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary);
+            color: var(--text);
+            box-shadow: 0 0 30px rgba(255, 0, 110, 0.5);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+
+        .scroll-line {
+            width: 2px;
+            height: 30px;
+            background: var(--primary);
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 12px;
+            color: var(--primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .section-header h2 {
+            font-size: 54px;
+            font-weight: 900;
+            margin: 0;
+        }
+
+        /* ABOUT */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .image-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0,217,255,0.1), rgba(255,0,110,0.1));
+            border: 2px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .image-glow {
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,217,255,0.3), transparent);
+            animation: rotate 8s linear infinite;
+        }
+
+        .about-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+        }
+
+        .image-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(10, 14, 39, 0.8);
+            z-index: 1;
+        }
+
+        .image-placeholder svg {
+            width: 100px;
+            height: 100px;
+            stroke: var(--primary);
+            fill: none;
+            opacity: 0.5;
+            margin-bottom: 20px;
+        }
+
+        .image-placeholder p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .about-content p {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .about-intro {
+            font-size: 18px !important;
+            color: var(--text) !important;
+            font-weight: 500;
+        }
+
+        .about-content .accent {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .about-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .detail-item {
+            display: flex;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(0, 217, 255, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .detail-icon {
+            font-size: 32px;
+            min-width: 50px;
+        }
+
+        .detail-item h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .detail-item p {
+            font-size: 13px;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        /* EXPERIENCE */
+        .experience-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+            border-bottom: 2px solid rgba(0, 217, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background: transparent;
+            border: 2px solid rgba(0, 217, 255, 0.2);
+            color: var(--text-light);
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover,
+        .tab-btn.active {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: rgba(0, 217, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .experience-content {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .experience-content.active {
+            display: block;
+        }
+
+        .exp-card {
+            background: linear-gradient(135deg, rgba(0,217,255,0.05), rgba(255,0,110,0.05));
+            border: 2px solid rgba(0, 217, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .exp-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            margin: 0;
+        }
+
+        .exp-duration {
+            font-size: 13px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .exp-company {
+            font-size: 14px;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .exp-description {
+            color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .exp-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .exp-highlight {
+            background: rgba(0, 217, 255, 0.2);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* PROJECTS */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(0,217,255,0.05), rgba(255,0,110,0.05));
+            border: 2px solid rgba(0, 217, 255, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 40px rgba(0, 217, 255, 0.2);
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, rgba(0,217,255,0.15), rgba(255,0,110,0.15));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1));
+            animation: shimmer 3s infinite;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-tag {
+            background: rgba(0, 217, 255, 0.2);
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* SKILLS */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, rgba(0,217,255,0.05), rgba(255,0,110,0.05));
+            border: 2px solid rgba(0, 217, 255, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-badge {
+            background: rgba(0, 217, 255, 0.15);
+            color: var(--primary);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            background: var(--primary);
+            color: var(--dark);
+            border-color: var(--primary);
+        }
+
+        /* CONTACT */
+        .contact {
+            text-align: center;
+        }
+
+        .contact-content {
+            background: linear-gradient(135deg, rgba(0,217,255,0.1), rgba(255,0,110,0.1));
+            border: 2px solid rgba(0, 217, 255, 0.2);
+            border-radius: 20px;
+            padding: 60px 40px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-intro {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: rgba(0, 217, 255, 0.15);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 50px;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: var(--primary);
+            color: var(--dark);
+            border-color: var(--primary);
+        }
+
+        .contact-cta {
+            margin-top: 30px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(0, 217, 255, 0.1);
+            padding: 30px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-details {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .exp-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="logo">
+            <span class="accent">BEN</span>FREY
+        </div>
+        <div class="nav-links">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="mobile-menu-btn">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+    <canvas id="particles"></canvas>        <div class="hero-content">
+            <p class="hero-tagline">Engineering • Research • Manufacturing</p>
+            <h1>BUILDING THE FUTURE,<br><span class="gradient-text">ONE PROJECT AT A TIME</span></h1>
+            <p class="hero-sub">Benjamin Frey — Purdue EET '29 | Engineering Innovator</p>
+            <div class="hero-buttons">
+                <a href="#experience" class="btn btn-primary">See My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="4">4</span>
+                    <span class="stat-label">Years Robotics</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="20">20</span>
+                    <span class="stat-label">Toys Adapted</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="1000">1000</span>
+                    <span class="stat-label">3D Model Downloads</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="10">10</span>
+                    <span class="stat-label">Rockets Launched</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>SCROLL</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section about">
+        <div class="section-header">
+            <span class="section-tag">WHO I AM</span>
+            <h2>ABOUT <span class="gradient-text">ME</span></h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-image">
+                <div class="image-frame">
+                    <div class="image-glow"></div>
+                    <div class="image-placeholder">
+                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        <p>Add your headshot here</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-content">
+                <p class="about-intro">I'm a passionate engineering student at Purdue University, driven by a relentless curiosity for how things work and how to make them better.</p>
+                <p>From designing fusion reactor components to adapting toys for children with disabilities, my work spans the full spectrum of engineering — research, manufacturing, design, and hands-on building.</p>
+                <p>I'm currently an <strong class="accent">Incoming Engineering Intern at Formlabs</strong>, working on the <strong>Manufacturing & Testing team</strong> in Somerville, MA. My background includes fusion energy research at Beam Alpha, competitive robotics leadership, and a deep commitment to making technology accessible to everyone.</p>
+                <div class="about-details">
+                    <div class="detail-item">
+                        <div class="detail-icon">🎓</div>
+                        <div>
+                            <h4>Education</h4>
+                            <p>Purdue University — EET, Class of 2029</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-icon">🏆</div>
+                        <div>
+                            <h4>Achievement</h4>
+                            <p>Eagle Scout, Robotics Division Winner, District Swim Champ</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-icon">🌐</div>
+                        <div>
+                            <h4>Languages</h4>
+                            <p>English, Mandarin</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" class="section experience">
+        <div class="section-header">
+            <span class="section-tag">MY JOURNEY</span>
+            <h2>EXPERIENCE & <span class="gradient-text">WORK</span></h2>
+        </div>
+
+        <div class="experience-tabs">
+            <button class="tab-btn active" onclick="switchTab(event, 'formlabs')">Formlabs</button>
+            <button class="tab-btn" onclick="switchTab(event, 'beam-alpha')">Beam Alpha</button>
+            <button class="tab-btn" onclick="switchTab(event, 'huskie')">Huskie Robotics</button>
+            <button class="tab-btn" onclick="switchTab(event, 'formula-sae')">Formula SAE</button>
+            <button class="tab-btn" onclick="switchTab(event, 'molex')">Molex</button>
+            <button class="tab-btn" onclick="switchTab(event, 'cage')">CAGE</button>
+        </div>
+
+        <div id="formlabs" class="experience-content active">
+            <div class="exp-card">
+                <div class="exp-header">
+                    <div>
+                        <h3 class="exp-title">Manufacturing & Testing Engineering Intern</h3>
+                        <div class="exp-company">Formlabs • Somerville, MA</div>
+                    </div>
+                    <div class="exp-duration">Sep 2025 – Present</div>
+                </div>
+                <p class="exp-description">Currently contributing to Formlabs' Manufacturing & Testing team, gaining hands-on experience with 3D printer manufacturing, quality assurance testing, and engineering problem-solving in a fast-paced hardware company environment.</p>
+                <div class="exp-highlights">
+                    <span class="exp-highlight">3D Printing</span>
+                    <span class="exp-highlight">Manufacturing</span>
+                    <span class="exp-highlight">Testing</span>
+                    <span class="exp-highlight">Quality Assurance</span>
+                    <span class="exp-highlight">Hardware</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="beam-alpha" class="experience-content">
+            <div class="exp-card">
+                <div class="exp-header">
+                    <div>
+                        <h3 class="exp-title">Engineering Research Intern</h3>
+                        <div class="exp-company">Beam Alpha Inc. • West Chicago, IL</div>
+                    </div>
+                    <div class="exp-duration">Jan 2025 – Present</div>
+                </div>
+                <p class="exp-description">Working on an industry-disrupting fusion reactor design. Performing research on increasing fusion product yield and production. Experience includes lab work, machine shop operations, welding, measurement electronics, and presenting at the American Nuclear Society Annual Conference.</p>
+                <div class="exp-highlights">
+                    <span class="exp-highlight">Fusion Research</span>
+                    <span class="exp-highlight">Lab Work</span>
+                    <span class="exp-highlight">Welding</span>
+                    <span class="exp-highlight">Electronics</span>
+                    <span class="exp-highlight">CAD Design</span>
+                    <span class="exp-highlight">Conference Presentation</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="huskie" class="experience-content">
+            <div class="exp-card">
+                <div class="exp-header">
+                    <div>
+                        <h3 class="exp-title">Project Manager & Electrical Lead</h3>
+                        <div class="exp-company">Huskie Robotics #3061 • Naperville, IL</div>
+                    </div>
+                    <div class="exp-duration">Aug 2021 – Apr 2025</div>
+                </div>
+                <p class="exp-description">Co-founder and manager of the Huskie Adapt program, which adapts toys for children with mental and physical disabilities. Managed subteams through ideation to production of 20+ adapted toys. 2024 Robotics Division Winner, part of a world-class FRC team with consistent competition success.</p>
+                <div class="exp-highlights">
+                    <span class="exp-highlight">Project Management</span>
+                    <span class="exp-highlight">Electrical Design</span>
+                    <span class="exp-highlight">Team Leadership</span>
+                    <span class="exp-highlight">Accessibility Engineering</span>
+                    <span class="exp-highlight">FRC Robotics</span>
+                    <span class="exp-highlight">Division Winner</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="formula-sae" class="experience-content">
+            <div class="exp-card">
+                <div class="exp-header">
+                    <div>
+                        <h3 class="exp-title">Vehicle Dynamics Team Member</h3>
+                        <div class="exp-company">Purdue Formula SAE • West Lafayette, IN</div>
+                    </div>
+                    <div class="exp-duration">Sep 2025 – Present</div>
+                </div>
+                <p class="exp-description">Currently contributing to Purdue's Formula SAE team, applying engineering principles to design and optimize high-performance race vehicles. Engaging in CAD modeling, simulation, and testing procedures.</p>
+                <div class="exp-highlights">
+                    <span class="exp-highlight">Vehicle Dynamics</span>
+                    <span class="exp-highlight">CAD Modeling</span>
+                    <span class="exp-highlight">Simulation</span>
+                    <span class="exp-highlight">Formula SAE</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="molex" class="experience-content">
+            <div class="exp-card">
+                <div class="exp-header">
+                    <div>
+                        <h3 class="exp-title">EMC Lab Shadowing Experience</h3>
+                        <div class="exp-company">Molex • Lisle, IL</div>
+                    </div>
+                    <div class="exp-duration">Summer 2025</div>
+                </div>
+                <p class="exp-description">First high school student invited to shadow Molex's EMC Lab. Learned about EMC chamber operations, ESC testing, electromagnetic emitter setup, component testing in adverse climates, and regulatory compliance. Optimized wavelength allocations, saving thousands of dollars and days of testing time.</p>
+                <div class="exp-highlights">
+                    <span class="exp-highlight">EMC Testing</span>
+                    <span class="exp-highlight">Compliance</span>
+                    <span class="exp-highlight">Electronics</span>
+                    <span class="exp-highlight">Lab Equipment</span>
+                    <span class="exp-highlight">Optimization</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="cage" class="experience-content">
+            <div class="exp-card">
+                <div class="exp-header">
+                    <div>
+                        <h3 class="exp-title">Civil Engineering Shadowing</h3>
+                        <div class="exp-company">CAGE Engineering, Inc. • Chicago Area</div>
+                    </div>
+                    <div class="exp-duration">Spring 2025</div>
+                </div>
+                <p class="exp-description">One of only two high school students in the nation selected to shadow CAGE Engineering. Gained insight into civil infrastructure, utilities management, traffic flow design and analysis, rainwater diversion systems, and community-focused property design solutions.</p>
+                <div class="exp-highlights">
+                    <span class="exp-highlight">Civil Engineering</span>
+                    <span class="exp-highlight">Infrastructure</span>
+                    <span class="exp-highlight">Traffic Analysis</span>
+                    <span class="exp-highlight">Utilities</span>
+                    <span class="exp-highlight">CAD Design</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="section">
+        <div class="section-header">
+            <span class="section-tag">WHAT I'VE BUILT</span>
+            <h2>FEATURED <span class="gradient-text">PROJECTS</span></h2>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">🤖</div>
+                <div class="project-content">
+                    <h3 class="project-title">Huskie Adapt Program</h3>
+                    <p class="project-description">Adapted 20+ toys for children with motor and physical disabilities, custom-modifying internal components for hypersensitive accessible buttons.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Accessibility</span>
+                        <span class="project-tag">Hardware</span>
+                        <span class="project-tag">Leadership</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">🔬</div>
+                <div class="project-content">
+                    <h3 class="project-title">Fusion Research (Nanoparticles)</h3>
+                    <p class="project-description">Developing solid nanoparticle structures for fusion applications while maintaining porosity. Includes lab equipment design and NASA equipment restoration.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Research</span>
+                        <span class="project-tag">Fusion</span>
+                        <span class="project-tag">Lab</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">🎮</div>
+                <div class="project-content">
+                    <h3 class="project-title">Modified Operation Game</h3>
+                    <p class="project-description">Transformed Operation board game into an accessible maze playable by both visually impaired and sighted users, retaining original game mechanics.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Game Design</span>
+                        <span class="project-tag">Accessibility</span>
+                        <span class="project-tag">Prototyping</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">🛠️</div>
+                <div class="project-content">
+                    <h3 class="project-title">CNC Milling Machine</h3>
+                    <p class="project-description">Built a 400mm x 250mm custom CNC milling machine from scratch, enabling precision manufacturing for personal projects and prototypes.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">CAM</span>
+                        <span class="project-tag">Fabrication</span>
+                        <span class="project-tag">DIY</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">⚡</div>
+                <div class="project-content">
+                    <h3 class="project-title">Custom Phone Charger</h3>
+                    <p class="project-description">Designed and built a phone charger from PCB design through soldering and 3D-printed enclosure, demonstrating full-stack hardware development.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">PCB Design</span>
+                        <span class="project-tag">Electronics</span>
+                        <span class="project-tag">3D Printing</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">🚀</div>
+                <div class="project-content">
+                    <h3 class="project-title">Rocket Engineering</h3>
+                    <p class="project-description">Designed, built, and successfully launched 10+ rockets. Experience includes structural design, propulsion systems, and flight testing.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Structural Design</span>
+                        <span class="project-tag">Propulsion</span>
+                        <span class="project-tag">Testing</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">📦</div>
+                <div class="project-content">
+                    <h3 class="project-title">3D Model Library</h3>
+                    <p class="project-description">Created and published 3D models that have been downloaded and used by 1,000+ people, contributing to the open-source maker community.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">CAD</span>
+                        <span class="project-tag">3D Modeling</span>
+                        <span class="project-tag">Open Source</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">🤝</div>
+                <div class="project-content">
+                    <h3 class="project-title">Accessible Tech Initiatives</h3>
+                    <p class="project-description">Multiple projects focused on making technology accessible to people with disabilities, from toy modifications to game redesigns and user interfaces.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">UX Design</span>
+                        <span class="project-tag">Accessibility</span>
+                        <span class="project-tag">Social Impact</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="section">
+        <div class="section-header">
+            <span class="section-tag">MY TOOLBOX</span>
+            <h2>SKILLS & <span class="gradient-text">EXPERTISE</span></h2>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>CAD & DESIGN</h3>
+                <div class="skill-list">
+                    <span class="skill-badge">Solidworks</span>
+                    <span class="skill-badge">NX</span>
+                    <span class="skill-badge">Fusion 360</span>
+                    <span class="skill-badge">Onshape</span>
+                    <span class="skill-badge">CAM</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>ELECTRONICS & PCB</h3>
+                <div class="skill-list">
+                    <span class="skill-badge">KiCAD</span>
+                    <span class="skill-badge">PCB Design</span>
+                    <span class="skill-badge">Soldering</span>
+                    <span class="skill-badge">Electronics</span>
+                    <span class="skill-badge">Arduino</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>PROGRAMMING</h3>
+                <div class="skill-list">
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">C/C++</span>
+                    <span class="skill-badge">MATLAB</span>
+                    <span class="skill-badge">Java</span>
+                    <span class="skill-badge">LabVIEW</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>FABRICATION</h3>
+                <div class="skill-list">
+                    <span class="skill-badge">CNC Milling</span>
+                    <span class="skill-badge">3D Printing</span>
+                    <span class="skill-badge">Welding</span>
+                    <span class="skill-badge">Machine Shop</span>
+                    <span class="skill-badge">Laser Cutting</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>RESEARCH & ANALYSIS</h3>
+                <div class="skill-list">
+                    <span class="skill-badge">Lab Work</span>
+                    <span class="skill-badge">Data Analysis</span>
+                    <span class="skill-badge">Testing</span>
+                    <span class="skill-badge">Research</span>
+                    <span class="skill-badge">Simulation</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>TOOLS & SOFTWARE</h3>
+                <div class="skill-list">
+                    <span class="skill-badge">Microsoft Office</span>
+                    <span class="skill-badge">Git/GitHub</span>
+                    <span class="skill-badge">AutoCAD</span>
+                    <span class="skill-badge">CATIA</span>
+                    <span class="skill-badge">Adobe Suite</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="section contact">
+        <div class="section-header">
+            <span class="section-tag">LET'S CONNECT</span>
+            <h2>GET IN <span class="gradient-text">TOUCH</span></h2>
+        </div>
+        <div class="contact-content">
+            <p class="contact-intro">
+                I'm always interested in hearing about new opportunities, collaborations, or just having a conversation about engineering and innovation. Reach out anytime!
+            </p>
+            <div class="contact-links">
+                <a href="mailto:benjaminfrey088@gmail.com" class="contact-link">
+                    ✉️ benjaminfrey088@gmail.com
+                </a>
+                <a href="tel:+16308578396" class="contact-link">
+                    📞 (630) 857-8396
+                </a>
+                <a href="https://linkedin.com/in/benfreyconnect" class="contact-link" target="_blank">
+                    💼 LinkedIn
+                </a>
+            </div>
+            <div class="contact-cta">
+                <a href="mailto:benjaminfrey088@gmail.com" class="btn btn-primary">Send me an Email</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 Benjamin Frey. Designed & Built with Code. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Particle background
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 50;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(0, 217, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let particle of particles) {
+                particle.update();
+                particle.draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Stat counters
+        function animateCounters() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(element => {
+                const target = parseInt(element.getAttribute('data-target'));
+                let count = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    count += increment;
+                    if (count >= target) {
+                        element.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(count);
+                    }
+                }, 40);
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            const statSection = document.querySelector('.hero-stats');
+            if (statSection.getBoundingClientRect().top < window.innerHeight) {
+                animateCounters();
+            }
+        });
+
+        // Tab switching
+        function switchTab(event, tabName) {
+            event.preventDefault();
+            
+            const buttons = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.experience-content');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Active nav link on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').style.display = 
+                document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+</body>
+</html>
